@@ -48,9 +48,10 @@ class DataManager {
         var fetchedPostalCodes: [PostalCode] = []
         
         let predicateCode = NSPredicate(format: "numCodPostal contains[cd] '\(searchText)'")
+        let predicateExtCode = NSPredicate(format: "extCodPostal contains[cd] '\(searchText)'")
         let predicateName = NSPredicate(format: "desigPostal contains[cd] '\(searchText)'")
         
-        let predicateOR = NSCompoundPredicate(type: .or, subpredicates: [predicateCode, predicateName])
+        let predicateOR = NSCompoundPredicate(type: .or, subpredicates: [predicateCode, predicateExtCode, predicateName])
         
         let fetchRequest: NSFetchRequest<PostalCode> = PostalCode.fetchRequest()
         fetchRequest.predicate = predicateOR
